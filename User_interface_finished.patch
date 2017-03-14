@@ -1,0 +1,491 @@
+Index: app/src/main/res/drawable/emoticon_sad.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/emoticon_sad.xml	(revision )
++++ app/src/main/res/drawable/emoticon_sad.xml	(revision )
+@@ -0,0 +1,8 @@
++<!-- drawable/emoticon_sad.xml -->
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:height="24dp"
++    android:width="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++    <path android:fillColor="#FFF" android:pathData="M20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M15.5,8C16.3,8 17,8.7 17,9.5C17,10.3 16.3,11 15.5,11C14.7,11 14,10.3 14,9.5C14,8.7 14.7,8 15.5,8M10,9.5C10,10.3 9.3,11 8.5,11C7.7,11 7,10.3 7,9.5C7,8.7 7.7,8 8.5,8C9.3,8 10,8.7 10,9.5M12,14C13.75,14 15.29,14.72 16.19,15.81L14.77,17.23C14.32,16.5 13.25,16 12,16C10.75,16 9.68,16.5 9.23,17.23L7.81,15.81C8.71,14.72 10.25,14 12,14Z" />
++</vector>
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision )
++++ app/build.gradle	(revision )
+@@ -0,0 +1,30 @@
++apply plugin: 'com.android.application'
++
++android {
++    compileSdkVersion 25
++    buildToolsVersion "25.0.2"
++    defaultConfig {
++        applicationId "com.example.seerhiy.tipcalculator"
++        minSdkVersion 15
++        targetSdkVersion 25
++        versionCode 1
++        versionName "1.0"
++        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
++    }
++    buildTypes {
++        release {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
++        }
++    }
++}
++
++dependencies {
++    compile fileTree(dir: 'libs', include: ['*.jar'])
++    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
++        exclude group: 'com.android.support', module: 'support-annotations'
++    })
++    compile 'com.android.support:appcompat-v7:25.0.1'
++    compile 'com.android.support.constraint:constraint-layout:1.0.2'
++    testCompile 'junit:junit:4.12'
++}
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(revision )
++++ app/src/main/res/values/dimens.xml	(revision )
+@@ -0,0 +1,7 @@
++<resources>
++    <dimen name="activity_horizontal_margin">16dp</dimen>
++    <dimen name="activity_vertical_margin">16dp</dimen>
++
++    <dimen name="activity_vertical_margin_big">32dp</dimen>
++    <dimen name="activity_image_buttons">60dp</dimen>
++</resources>
+\ No newline at end of file
+Index: app/src/androidTest/java/com/example/seerhiy/tipcalculator/ExampleInstrumentedTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/androidTest/java/com/example/seerhiy/tipcalculator/ExampleInstrumentedTest.java	(revision )
++++ app/src/androidTest/java/com/example/seerhiy/tipcalculator/ExampleInstrumentedTest.java	(revision )
+@@ -0,0 +1,26 @@
++package com.example.seerhiy.tipcalculator;
++
++import android.content.Context;
++import android.support.test.InstrumentationRegistry;
++import android.support.test.runner.AndroidJUnit4;
++
++import org.junit.Test;
++import org.junit.runner.RunWith;
++
++import static org.junit.Assert.*;
++
++/**
++ * Instrumentation test, which will execute on an Android device.
++ *
++ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
++ */
++@RunWith(AndroidJUnit4.class)
++public class ExampleInstrumentedTest {
++    @Test
++    public void useAppContext() throws Exception {
++        // Context of the app under test.
++        Context appContext = InstrumentationRegistry.getTargetContext();
++
++        assertEquals("com.example.seerhiy.tipcalculator", appContext.getPackageName());
++    }
++}
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision )
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -0,0 +1,21 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.example.seerhiy.tipcalculator">
++
++    <application
++        android:allowBackup="true"
++        android:icon="@mipmap/ic_launcher"
++        android:label="@string/app_name"
++        android:roundIcon="@mipmap/ic_launcher_round"
++        android:supportsRtl="true"
++        android:theme="@style/AppTheme">
++        <activity android:name=".MainActivity">
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++        </activity>
++    </application>
++
++</manifest>
+\ No newline at end of file
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision )
++++ app/src/main/res/values/styles.xml	(revision )
+@@ -0,0 +1,11 @@
++<resources>
++
++    <!-- Base application theme. -->
++    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
++        <!-- Customize your theme here. -->
++        <item name="colorPrimary">@color/colorPrimary</item>
++        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
++        <item name="colorAccent">@color/colorAccent</item>
++    </style>
++
++</resources>
+Index: app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/proguard-rules.pro	(revision )
++++ app/proguard-rules.pro	(revision )
+@@ -0,0 +1,25 @@
++# Add project specific ProGuard rules here.
++# By default, the flags in this file are appended to flags specified
++# in C:\Users\user\AppData\Local\Android\Sdk/tools/proguard/proguard-android.txt
++# You can edit the include path and order by changing the proguardFiles
++# directive in build.gradle.
++#
++# For more details, see
++#   http://developer.android.com/guide/developing/tools/proguard.html
++
++# Add any project specific keep options here:
++
++# If your project uses WebView with JS, uncomment the following
++# and specify the fully qualified class name to the JavaScript interface
++# class:
++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
++#   public *;
++#}
++
++# Uncomment this to preserve the line number information for
++# debugging stack traces.
++#-keepattributes SourceFile,LineNumberTable
++
++# If you keep the line number information, uncomment this to
++# hide the original source file name.
++#-renamesourcefileattribute SourceFile
+Index: app/src/test/java/com/example/seerhiy/tipcalculator/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/test/java/com/example/seerhiy/tipcalculator/ExampleUnitTest.java	(revision )
++++ app/src/test/java/com/example/seerhiy/tipcalculator/ExampleUnitTest.java	(revision )
+@@ -0,0 +1,17 @@
++package com.example.seerhiy.tipcalculator;
++
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++/**
++ * Example local unit test, which will execute on the development machine (host).
++ *
++ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
++ */
++public class ExampleUnitTest {
++    @Test
++    public void addition_isCorrect() throws Exception {
++        assertEquals(4, 2 + 2);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/drawable/emoticon_happy.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/emoticon_happy.xml	(revision )
++++ app/src/main/res/drawable/emoticon_happy.xml	(revision )
+@@ -0,0 +1,8 @@
++<!-- drawable/emoticon_happy.xml -->
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:height="24dp"
++    android:width="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++    <path android:fillColor="#FFFF" android:pathData="M20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M10,9.5C10,10.3 9.3,11 8.5,11C7.7,11 7,10.3 7,9.5C7,8.7 7.7,8 8.5,8C9.3,8 10,8.7 10,9.5M17,9.5C17,10.3 16.3,11 15.5,11C14.7,11 14,10.3 14,9.5C14,8.7 14.7,8 15.5,8C16.3,8 17,8.7 17,9.5M12,17.23C10.25,17.23 8.71,16.5 7.81,15.42L9.23,14C9.68,14.72 10.75,15.23 12,15.23C13.25,15.23 14.32,14.72 14.77,14L16.19,15.42C15.29,16.5 13.75,17.23 12,17.23Z" />
++</vector>
+\ No newline at end of file
+Index: app/src/main/java/com/example/seerhiy/tipcalculator/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/seerhiy/tipcalculator/MainActivity.java	(revision )
++++ app/src/main/java/com/example/seerhiy/tipcalculator/MainActivity.java	(revision )
+@@ -0,0 +1,13 @@
++package com.example.seerhiy.tipcalculator;
++
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++
++public class MainActivity extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_main);
++    }
++}
+Index: app/src/main/res/drawable/emoticon_neutral.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/emoticon_neutral.xml	(revision )
++++ app/src/main/res/drawable/emoticon_neutral.xml	(revision )
+@@ -0,0 +1,8 @@
++<!-- drawable/emoticon_neutral.xml -->
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:height="24dp"
++    android:width="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++    <path android:fillColor="#FFF" android:pathData="M8.5,11A1.5,1.5 0 0,1 7,9.5A1.5,1.5 0 0,1 8.5,8A1.5,1.5 0 0,1 10,9.5A1.5,1.5 0 0,1 8.5,11M15.5,11A1.5,1.5 0 0,1 14,9.5A1.5,1.5 0 0,1 15.5,8A1.5,1.5 0 0,1 17,9.5A1.5,1.5 0 0,1 15.5,11M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M9,14H15A1,1 0 0,1 16,15A1,1 0 0,1 15,16H9A1,1 0 0,1 8,15A1,1 0 0,1 9,14Z" />
++</vector>
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision )
++++ app/src/main/res/values/colors.xml	(revision )
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <color name="colorPrimary">#3F51B5</color>
++    <color name="colorPrimaryDark">#303F9F</color>
++    <color name="colorAccent">#FF4081</color>
++    
++    <color name="colorBlue">#03A9F4</color>
++    <color name="colorLightGrey">#CFD8DC</color>
++    <color name="colorWhite">#FFFFFF</color>
++
++
++</resources>
+Index: app/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/.gitignore	(revision )
++++ app/.gitignore	(revision )
+@@ -0,0 +1,1 @@
++/build
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision )
++++ app/src/main/res/layout/activity_main.xml	(revision )
+@@ -0,0 +1,166 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/activity_main"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:paddingBottom="16dp"
++    android:paddingLeft="32dp"
++    android:paddingRight="32dp"
++    android:paddingTop="16dp"
++    android:background="@color/colorBlue"
++    tools:context="com.example.seerhiy.tipcalculator.MainActivity">
++
++    <TextView
++        android:id="@+id/tvBillAmount"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:textColor="@color/colorWhite"
++        android:text="@string/Main.msg.billamount"
++        android:textAppearance="?android:attr/textAppearanceMedium"/>
++
++    <EditText
++        android:id="@+id/etBillAmount"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_below="@+id/tvBillAmount"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true"
++        android:ems="10"
++        android:inputType="numberDecimal"
++        android:hint="@string/main.hint.billamount"
++        android:textColor="@color/colorWhite"
++        android:textAppearance="?android:attr/textAppearanceLarge"
++        android:textColorHint="@color/colorLightGrey"
++        android:gravity="center"
++        android:background="@android:color/transparent"/>
++
++    <View
++        android:id="@+id/vRatingbuttons"
++        android:layout_width="match_parent"
++        android:layout_height="1dp"
++        android:layout_below="@id/etBillAmount"
++        android:layout_marginTop="@dimen/activity_vertical_margin"
++        android:background="@color/colorLightGrey"/>
++
++    <LinearLayout
++        android:id="@+id/lrRatingButtons"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_below="@+id/vRatingbuttons"
++        android:layout_marginTop="@dimen/activity_vertical_margin"
++        android:orientation="horizontal">
++
++        <ImageButton
++            android:id="@+id/ibRegularService"
++            android:layout_width="0dp"
++            android:layout_height="@dimen/activity_image_buttons"
++            android:layout_weight="1"
++            android:backgroundTint="@color/colorBlue"
++            android:src="@drawable/emoticon_sad"/>
++
++        <ImageButton
++            android:id="@+id/ibGoodService"
++            android:layout_width="0dp"
++            android:layout_height="@dimen/activity_image_buttons"
++            android:layout_weight="1"
++            android:backgroundTint="@color/colorBlue"
++            android:src="@drawable/emoticon_neutral"/>
++
++        <ImageButton
++            android:id="@+id/ibExsellentService"
++            android:layout_width="0dp"
++            android:layout_height="@dimen/activity_image_buttons"
++            android:layout_weight="1"
++            android:backgroundTint="@color/colorBlue"
++            android:src="@drawable/emoticon_happy"/>
++    </LinearLayout>
++
++    <View
++        android:id="@+id/vRatingsSeparator"
++        android:layout_width="match_parent"
++        android:layout_height="1dp"
++        android:layout_below="@+id/lrRatingButtons"
++        android:layout_marginTop="@dimen/activity_vertical_margin"
++        android:background="@color/colorLightGrey"/>
++
++    <TextView
++        android:id="@+id/tvServiceRating"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_below="@+id/vRatingsSeparator"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true"
++        android:gravity="center"
++        android:textColor="@color/colorWhite"
++        android:text="@string/main.msg.servicerating"
++        android:textAllCaps="true"
++        android:layout_marginTop="@dimen/activity_vertical_margin"
++        android:textAppearance="?android:attr/textAppearanceMedium"/>
++
++    <LinearLayout
++        android:id="@+id/llTipInfo"
++        android:orientation="horizontal"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_below="@+id/tvServiceRating"
++        android:divider="?android:dividerHorizontal"
++        android:layout_marginTop="@dimen/activity_horizontal_margin"
++        android:showDividers="middle">
++
++        <TextView
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:gravity="center"
++            android:text="@string/main.msg.tippercent"
++            android:textAppearance="?android:attr/textAppearanceMedium"
++            android:textColor="@color/colorWhite"
++            android:layout_marginTop="@dimen/activity_vertical_margin"/>
++
++        <TextView
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:gravity="center"
++            android:text="@string/main.msg.tiptotal"
++            android:textAppearance="?android:attr/textAppearanceMedium"
++            android:textColor="@color/colorWhite"
++            android:layout_marginTop="@dimen/activity_vertical_margin"/>
++
++    </LinearLayout>
++
++    <View
++        android:id="@+id/vBillSeparator"
++        android:layout_width="match_parent"
++        android:layout_height="1dp"
++        android:layout_below="@+id/llTipInfo"
++        android:layout_marginTop="@dimen/activity_vertical_margin"
++        android:background="@color/colorLightGrey"/>
++
++    <TextView
++        android:id="@+id/tvBillTotal"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_below="@+id/vBillSeparator"
++        android:layout_marginTop="@dimen/activity_vertical_margin_big"
++        android:gravity="center"
++        android:textAllCaps="true"
++        android:text="@string/main.msg.billtotal"
++        android:textColor="@color/colorWhite"
++        android:textAppearance="?android:attr/textAppearanceMedium"/>
++
++    <TextView
++        android:id="@+id/tvBillTotalAmount"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_below="@+id/tvBillTotal"
++        android:layout_marginTop="@dimen/activity_vertical_margin_big"
++        android:gravity="center"
++        android:textAllCaps="true"
++        android:text="@string/main.msg.billtotalresult"
++        android:textColor="@color/colorWhite"
++        android:textAppearance="?android:attr/textAppearanceLarge"/>
++
++</RelativeLayout>
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision )
++++ app/src/main/res/values/strings.xml	(revision )
+@@ -0,0 +1,12 @@
++<resources>
++    <string name="app_name">TipCalculator</string>
++    
++    <string name="Main.msg.billamount">Bill amount</string>
++    <string name="main.hint.billamount">Введіть сумму</string>
++    <string name="main.msg.servicerating">Service Rating</string>
++    <string name="main.msg.tippercent">%s%% Tip percent</string>
++    <string name="main.msg.tiptotal">$%s Tip Total</string>
++    <string name="main.msg.billtotal">Bill Total</string>
++    <string name="main.msg.billtotalresult">$%s</string>
++
++</resources>
